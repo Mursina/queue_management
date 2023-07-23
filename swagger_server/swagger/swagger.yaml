@@ -1,0 +1,204 @@
+openapi: 3.0.0
+info:
+  title: Queue Management System API
+  description: API documentation for the Queue Management System
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
+paths:
+  /generate_token:
+    post:
+      tags:
+      - Queue Management
+      summary: Generate a queue token for customers
+      operationId: generate_token_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateTokenInput'
+        required: true
+      responses:
+        "200":
+          description: Token generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateTokenOutput'
+        "400":
+          description: "Bad request, missing or invalid parameters"
+      x-openapi-router-controller: swagger_server.controllers.queue_management_controller
+  /update_counter_status:
+    put:
+      tags:
+      - Queue Management
+      summary: Update status of a counter
+      operationId: update_counter_status_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCounterStatusInput'
+        required: true
+      responses:
+        "200":
+          description: Counter status updated successfully
+        "400":
+          description: "Bad request, missing or invalid parameters"
+      x-openapi-router-controller: swagger_server.controllers.queue_management_controller
+  /check_token_assignment:
+    get:
+      tags:
+      - Queue Management
+      summary: Check the token assignment for a counter
+      operationId: check_token_assignment_get
+      parameters:
+      - name: counter_id
+        in: query
+        description: ID of the counter to check token assignment
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckTokenAssignmentOutput'
+        "400":
+          description: "Bad request, missing or invalid parameters"
+      x-openapi-router-controller: swagger_server.controllers.queue_management_controller
+  /choose_service_mode:
+    put:
+      tags:
+      - Queue Management
+      summary: Choose the mode of the service
+      operationId: choose_service_mode_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChooseServiceModeInput'
+        required: true
+      responses:
+        "200":
+          description: Service mode updated successfully
+        "400":
+          description: "Bad request, missing or invalid parameters"
+      x-openapi-router-controller: swagger_server.controllers.queue_management_controller
+  /update_system_configuration:
+    put:
+      tags:
+      - Queue Management
+      summary: Update system configurations
+      operationId: update_system_configuration_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSystemConfigurationInput'
+        required: true
+      responses:
+        "200":
+          description: System configurations updated successfully
+        "400":
+          description: "Bad request, missing or invalid parameters"
+      x-openapi-router-controller: swagger_server.controllers.queue_management_controller
+components:
+  schemas:
+    GenerateTokenInput:
+      required:
+      - service_id
+      type: object
+      properties:
+        service_id:
+          type: string
+          description: ID of the service for which token needs to be generated
+    GenerateTokenOutput:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: The generated token
+      example:
+        token: token
+    UpdateCounterStatusInput:
+      required:
+      - counter_id
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: New status of the counter
+        counter_id:
+          type: string
+          description: ID of the counter to be updated
+    CheckTokenAssignmentOutput:
+      required:
+      - status
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: The token assigned to the counter
+        status:
+          type: string
+          description: The status of the counter
+      example:
+        token: token
+        status: status
+    ChooseServiceModeInput:
+      required:
+      - mode
+      type: object
+      properties:
+        mode:
+          type: string
+          description: The selected mode of the service
+    UpdateSystemConfigurationInput:
+      required:
+      - counter_status
+      - number_of_counters
+      - service_modes
+      - services_per_counter
+      - services_types
+      - token_limit_per_counter
+      type: object
+      properties:
+        number_of_counters:
+          type: integer
+          description: Number of counters available in the system
+        services_types:
+          type: array
+          description: List of service types available in the system
+          items:
+            type: string
+        services_per_counter:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Services assigned to each counter
+        counter_status:
+          type: object
+          additionalProperties:
+            type: string
+          description: Status of each counter
+        token_limit_per_counter:
+          type: integer
+          description: Maximum token limit per counter
+        service_modes:
+          type: array
+          description: "Modes of service (e.g., setup mode, run mode, offline)"
+          items:
+            type: string
+
