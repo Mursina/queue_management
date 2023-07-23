@@ -112,10 +112,10 @@ components:
   schemas:
     GenerateTokenInput:
       required:
-      - service_id
+      - service_name
       type: object
       properties:
-        service_id:
+        service_name:
           type: string
           description: ID of the service for which token needs to be generated
     GenerateTokenOutput:

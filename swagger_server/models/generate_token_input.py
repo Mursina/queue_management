@@ -14,20 +14,20 @@ class GenerateTokenInput(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, service_id: str=None):  # noqa: E501
+    def __init__(self, service_name: str=None):  # noqa: E501
         """GenerateTokenInput - a model defined in Swagger
 
-        :param service_id: The service_id of this GenerateTokenInput.  # noqa: E501
-        :type service_id: str
+        :param service_name: The service_name of this GenerateTokenInput.  # noqa: E501
+        :type service_name: str
         """
         self.swagger_types = {
-            'service_id': str
+            'service_name': str
         }
 
         self.attribute_map = {
-            'service_id': 'service_id'
+            'service_name': 'service_name'
         }
-        self._service_id = service_id
+        self._service_name = service_name
 
     @classmethod
     def from_dict(cls, dikt) -> 'GenerateTokenInput':
@@ -41,26 +41,26 @@ class GenerateTokenInput(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def service_id(self) -> str:
-        """Gets the service_id of this GenerateTokenInput.
+    def service_name(self) -> str:
+        """Gets the service_name of this GenerateTokenInput.
 
         ID of the service for which token needs to be generated  # noqa: E501
 
-        :return: The service_id of this GenerateTokenInput.
+        :return: The service_name of this GenerateTokenInput.
         :rtype: str
         """
-        return self._service_id
+        return self._service_name
 
-    @service_id.setter
-    def service_id(self, service_id: str):
-        """Sets the service_id of this GenerateTokenInput.
+    @service_name.setter
+    def service_name(self, service_name: str):
+        """Sets the service_name of this GenerateTokenInput.
 
         ID of the service for which token needs to be generated  # noqa: E501
 
-        :param service_id: The service_id of this GenerateTokenInput.
-        :type service_id: str
+        :param service_name: The service_name of this GenerateTokenInput.
+        :type service_name: str
         """
-        if service_id is None:
-            raise ValueError("Invalid value for `service_id`, must not be `None`")  # noqa: E501
+        if service_name is None:
+            raise ValueError("Invalid value for `service_name`, must not be `None`")  # noqa: E501
 
-        self._service_id = service_id
+        self._service_name = service_name
