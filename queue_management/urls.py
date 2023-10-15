@@ -25,4 +25,5 @@ urlpatterns = [
     path('check_token_assignment', views.check_token_assignment),
     path('choose_service_mode', views.choose_service_mode),
     path('update_system_configuration', views.update_system_configuration),
+    path('authorized', views.authorized),
 ]
