@@ -20,5 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate_token/', views.generate_token),
+    path('generate_token', views.generate_token),
+    path('update_counter_status', views.update_counter_status),
+    path('check_token_assignment', views.check_token_assignment),
+    path('choose_service_mode', views.choose_service_mode),
+    path('update_system_configuration', views.update_system_configuration),
 ]
