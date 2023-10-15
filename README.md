@@ -37,3 +37,9 @@ django-admin startapp home
 ```
 
 And add the app to the settings.py file under the INSTALLED_APPS
+
+### Install djangorestframework
+
+```
+pip install djangorestframework
+```

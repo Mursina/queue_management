@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # app
     'home',
+
+    # include django rest framework
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
