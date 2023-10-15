@@ -1,9 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.shortcuts import render
 
 @api_view(['POST'])
 def generate_token(request):
-    return Response({'message': 'Token is created successfully'})
+    return render(request, 'home/index.html', {'response': {'token': 123, 'message': 'Token is created successfully'}})
 
 @api_view(['PUT'])
 def update_counter_status(request):
