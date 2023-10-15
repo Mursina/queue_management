@@ -49,3 +49,18 @@ pip install djangorestframework
 Create a folder called template inside the app folder and have the same name as app like below. Include all html files inside there.
 
 home/template/home/index.html
+
+
+### Database changes
+
+Apply db migrations,
+
+```
+python manage.py migrate
+```
+
+Create superuser,
+
+```
+python manage.py createsuperuser
+```
