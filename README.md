@@ -102,3 +102,20 @@ Create Counter instance,
 ```
 Counter.objects.create(counter_id=1, service_id=srv_ins, status='open')
 ```
+
+Filter the row,
+
+```
+Service.objects.filter(service_name__endswith="B")
+```
+
+Search the row,
+
+```
+Service.objects.filter(service_name__icontains="srv")
+```
+
+```
+Service.objects.exclude(service_name__icontains="B")
+```
+
