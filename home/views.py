@@ -2,6 +2,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required 
+import json
+
+from .models import Token, Counter, Service
 
 @login_required(login_url='/admin')
 def authorized(request):
@@ -17,8 +20,12 @@ def update_counter_status(request):
 
 @api_view(['GET'])
 def check_token_assignment(request):
+    counter = request.GET.get('counter_id')
+    counter_ins = Counter.objects.get(pk=counter)
+    token = Token.objects.filter(counter_id=counter_ins)
+    
     return Response({
-        "token": "A123",
+        "token": token.values().first(),
         "status": "open"
     })
 

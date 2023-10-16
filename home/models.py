@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Token(models.Model):
-    token = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     counter = models.ForeignKey('Counter', on_delete=models.CASCADE)
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
