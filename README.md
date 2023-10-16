@@ -64,3 +64,41 @@ Create superuser,
 ```
 python manage.py createsuperuser
 ```
+
+### Django shell commands
+
+Import Tables,
+
+```
+from home.models import Service, Counter
+```
+
+Get all rows,
+
+```
+Counter.objects.all()
+```
+
+Get a specific row,
+
+```
+Counter.objects.get(pk=1)
+```
+
+Create Service instance,
+
+```
+Service.objects.create(service_id=1, service_name='ServiceA')
+```
+
+Fetch the row,
+
+```
+srv_ins = Service.object.get(pk=1)
+```
+
+Create Counter instance,
+
+```
+Counter.objects.create(counter_id=1, service_id=srv_ins, status='open')
+```
