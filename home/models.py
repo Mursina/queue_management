@@ -11,11 +11,12 @@ class Token(models.Model):
 
 class Service(models.Model):
     service_id = models.AutoField(primary_key=True)
-    serivice_name = models.CharField(max_length=255)
+    service_name = models.CharField(max_length=255)
 
 
 class Counter(models.Model):
     counter_id = models.AutoField(primary_key=True)
+    service_id = models.ForeignKey('Service', on_delete=models.CASCADE)
     status = models.CharField(max_length=255)
 
 
